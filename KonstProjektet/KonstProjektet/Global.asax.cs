@@ -13,6 +13,6 @@ namespace KonstProjektet
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-        }
+        }        
     }
 }

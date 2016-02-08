@@ -1,0 +1,42 @@
+﻿@model IEnumerable<KonstProjektet.Models.KonstModel>
+
+@{
+    ViewBag.Title = "KonstView";
+}
+
+<div class="container">
+    <h2 style="text-align:center">Galleri</h2>
+    <p>
+        @Html.ActionLink("Lägg till konstverk", "Create")
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ArtworkID)</th>
+                <th>@Html.DisplayNameFor(model => model.Artist)</th>
+                <th>@Html.DisplayNameFor(model => model.Title)</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ArtworkID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Artist)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -96,6 +96,7 @@ namespace KonstProjektet.Controllers
         [HttpPost()]
         public ActionResult Edit(KonstModel k)
         {
+            Konstverk.Add(k);
             Konstverk.RemoveAt(k.ArtworkID);
 
             return RedirectToAction("KonstView");

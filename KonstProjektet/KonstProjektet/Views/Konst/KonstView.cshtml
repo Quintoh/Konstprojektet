@@ -7,7 +7,7 @@
 <div class="container">
     <h2 style="text-align:center">Galleri</h2>
     <p>
-        @Html.ActionLink("Lägg till konstverk", "Create")
+        @Html.ActionLink("Lägg till konstverk", "AddKonst")
     </p>
     <table class="table">
         <thead>
@@ -33,7 +33,7 @@
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        @Html.ActionLink("Ta bort", "Delete", new { /* id=item.PrimaryKey */ })
                     </td>
                 </tr>
             }

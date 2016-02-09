@@ -138,7 +138,7 @@
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Konst\KonstView.cshtml" />
     <Content Include="Views\Konst\AddKonst.cshtml" />
-    <Content Include="Views\Konst\Details.cshtml" />
+    <Content Include="Views\Konst\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

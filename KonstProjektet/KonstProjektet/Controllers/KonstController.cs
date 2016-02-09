@@ -22,9 +22,7 @@ namespace KonstProjektet.Controllers
             //Konstverk.Add(new KonstModel() { ArtworkID = 4, Artist = "Sefik Mehicic", Title = "Selfie" });
             //Konstverk.Add(new KonstModel() { ArtworkID = 5, Artist = "Brutus Östling", Title = "En sovande räv" });
 
-            return View(Konstverk);    
-                
-            
+            return View(Konstverk);
         }
 
 
@@ -50,22 +48,30 @@ namespace KonstProjektet.Controllers
         }
 
 
-
-
-
-
-
         //Ta bort
 
         [HttpGet]
         public ActionResult Delete(int? id)
         {
-            return View();
+            KonstModel k = new KonstModel();
+
+            foreach (var item in Konstverk)
+            {
+                if (item.ArtworkID == id)
+                {
+                    k.Artist = item.Artist;
+                    k.ArtworkID = item.ArtworkID;
+                    k.Title = item.Title;
+                }
+            }
+            return View(k);
         }
 
-        [HttpPost]
+        [HttpPost()]        
         public ActionResult Delete(KonstModel k)
         {
+            Konstverk.RemoveAt(k.ArtworkID);
+            
             return RedirectToAction("KonstView");
         }
     }

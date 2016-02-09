@@ -74,5 +74,32 @@ namespace KonstProjektet.Controllers
             
             return RedirectToAction("KonstView");
         }
+
+        //Redigera
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            KonstModel k = new KonstModel();
+
+            foreach (var item in Konstverk)
+            {
+                if (item.ArtworkID == id)
+                {
+                    k.Artist = item.Artist;
+                    k.ArtworkID = item.ArtworkID;
+                    k.Title = item.Title;
+                }
+            }
+            return View(k);
+        }
+
+        [HttpPost()]
+        public ActionResult Edit(KonstModel k)
+        {
+            Konstverk.RemoveAt(k.ArtworkID);
+
+            return RedirectToAction("KonstView");
+        }
     }
 }
+    

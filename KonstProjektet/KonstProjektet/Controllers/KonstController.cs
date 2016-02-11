@@ -33,7 +33,7 @@ namespace KonstProjektet.Controllers
                 return View("AddKonst", k);
             }
             
-            MyInventory.GetList.Add(k);
+            MyInventory.add(k);
            
             return RedirectToAction("KonstView");
         }
@@ -59,23 +59,13 @@ namespace KonstProjektet.Controllers
         }
 
         [HttpPost]        
-        public ActionResult Delete(KonstModel k)
-        {     
-        
-            foreach (var pn in MyInventory.GetList)
-            {
-                if ((pn.ArtworkID == k.ArtworkID))
-                {
-                    MyInventory.GetList.Remove(pn);
-                    break; // TODO: might not be correct. Was : Exit For
-                }
-            }
+        public ActionResult Delete(int id)
+        {
+            MyInventory.remove(id);
 
-            return RedirectToAction("Index");
+            
 
-            //MyInventory.GetList.RemoveAt(k.ArtworkID);
-
-            //return RedirectToAction("KonstView");
+            return RedirectToAction("KonstView");
         }
 
         

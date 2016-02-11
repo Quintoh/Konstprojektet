@@ -29,9 +29,19 @@ namespace KonstProjektet.Models
             new KonstModel() { ArtworkID = 5, Artist = "Brutus Östling", Title = "En sovande räv" }
         };
 
-        public List<KonstModel> GetList
+        public IEnumerable<KonstModel> GetList
         {
             get { return Konstverk; }
+        }
+
+        public void remove(int id)
+        {
+            Konstverk.Remove(Konstverk.Where(x => x.ArtworkID == id).FirstOrDefault());
+        }
+
+        public void add(KonstModel k)
+        {
+            Konstverk.Add(k);
         }
     }
 }

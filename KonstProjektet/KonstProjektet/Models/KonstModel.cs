@@ -18,4 +18,20 @@ namespace KonstProjektet.Models
         [Required(ErrorMessage = "Titel saknas.")]
         public string Title { get; set; }
     }
+
+    public class inventory
+    {
+        static List<KonstModel> Konstverk = new List<KonstModel>() {
+            new KonstModel() { ArtworkID = 1, Artist = "Brutus Östling", Title = "Tre pingviner" },
+            new KonstModel() { ArtworkID = 2, Artist = "Brutus Östling", Title = "En örn som dyker" },
+            new KonstModel() { ArtworkID = 3, Artist = "Picasso", Title = "Mona Lisa" },
+            new KonstModel() { ArtworkID = 4, Artist = "Sefik Mehicic", Title = "Selfie" },
+            new KonstModel() { ArtworkID = 5, Artist = "Brutus Östling", Title = "En sovande räv" }
+        };
+
+        public List<KonstModel> GetList
+        {
+            get { return Konstverk; }
+        }
+    }
 }

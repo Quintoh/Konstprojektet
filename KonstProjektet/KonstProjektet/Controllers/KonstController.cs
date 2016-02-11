@@ -9,28 +9,19 @@ namespace KonstProjektet.Controllers
 {
     public class KonstController : Controller
     {
-        static List<KonstModel> Konstverk = new List<KonstModel>();
-
+        inventory MyInventory = new inventory();
 
        
         public ActionResult KonstView()
         {
-
-            //Konstverk.Add(new KonstModel() { ArtworkID = 1, Artist = "Brutus Östling", Title = "Tre pingviner" });
-            //Konstverk.Add(new KonstModel() { ArtworkID = 2, Artist = "Brutus Östling", Title = "En örn som dyker" });
-            //Konstverk.Add(new KonstModel() { ArtworkID = 3, Artist = "Picasso", Title = "Mona Lisa" });
-            //Konstverk.Add(new KonstModel() { ArtworkID = 4, Artist = "Sefik Mehicic", Title = "Selfie" });
-            //Konstverk.Add(new KonstModel() { ArtworkID = 5, Artist = "Brutus Östling", Title = "En sovande räv" });
-
-            return View(Konstverk);
+            return View(MyInventory.GetList);
         }
 
 
         //Lägga till
 
         public ActionResult AddKonst()
-        {
-            
+        {            
             return View();
         }
 
@@ -42,7 +33,7 @@ namespace KonstProjektet.Controllers
                 return View("AddKonst", k);
             }
             
-            Konstverk.Add(k);
+            MyInventory.GetList.Add(k);
            
             return RedirectToAction("KonstView");
         }
@@ -55,7 +46,7 @@ namespace KonstProjektet.Controllers
         {
             KonstModel k = new KonstModel();
 
-            foreach (var item in Konstverk)
+            foreach (var item in MyInventory.GetList)
             {
                 if (item.ArtworkID == id)
                 {
@@ -67,21 +58,36 @@ namespace KonstProjektet.Controllers
             return View(k);
         }
 
-        [HttpPost()]        
+        [HttpPost]        
         public ActionResult Delete(KonstModel k)
-        {
-            Konstverk.RemoveAt(k.ArtworkID);
-            
-            return RedirectToAction("KonstView");
+        {     
+        
+            foreach (var pn in MyInventory.GetList)
+            {
+                if ((pn.ArtworkID == k.ArtworkID))
+                {
+                    MyInventory.GetList.Remove(pn);
+                    break; // TODO: might not be correct. Was : Exit For
+                }
+            }
+
+            return RedirectToAction("Index");
+
+            //MyInventory.GetList.RemoveAt(k.ArtworkID);
+
+            //return RedirectToAction("KonstView");
         }
 
-        //Redigera
-        [HttpGet]
+        
+   
+
+    //Redigera
+    [HttpGet]
         public ActionResult Edit(int? id)
         {
             KonstModel k = new KonstModel();
 
-            foreach (var item in Konstverk)
+            foreach (var item in MyInventory.GetList)
             {
                 if (item.ArtworkID == id)
                 {
@@ -93,11 +99,11 @@ namespace KonstProjektet.Controllers
             return View(k);
         }
 
-        [HttpPost()]
+        [HttpPost]
         public ActionResult Edit(KonstModel k)
         {
-            Konstverk.Add(k);
-            Konstverk.RemoveAt(k.ArtworkID);
+            //MyInventory.GetList.Add(k);
+            //MyInventory.GetList.RemoveAt(k.ArtworkID);
 
             return RedirectToAction("KonstView");
         }

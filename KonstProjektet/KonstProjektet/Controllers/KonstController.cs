@@ -92,9 +92,20 @@ namespace KonstProjektet.Controllers
         [HttpPost]
         public ActionResult Edit(KonstModel k)
         {
-            //MyInventory.GetList.Add(k);
-            //MyInventory.GetList.RemoveAt(k.ArtworkID);
+            if (!ModelState.IsValid)
+            {
+                return View("Edit", k);
+            }
 
+            foreach (KonstModel Item in MyInventory.GetList)
+            {
+                if (Item.ArtworkID == k.ArtworkID)
+                {
+                    Item.ArtworkID = k.ArtworkID;
+                    Item.Title = k.Title;
+                    Item.Artist = k.Artist;                    
+                }
+            }
             return RedirectToAction("KonstView");
         }
     }

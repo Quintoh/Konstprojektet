@@ -89,14 +89,14 @@ namespace KonstProjektetV2.Controllers
         [HttpPost]
         public async Task<ActionResult> AddNew(TableInsertModel model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
 
             string fileEnding = string.Empty;
-            if(model.File != null)
+            if (model.File != null)
             {
                 fileEnding = model.File.FileName.Split('.').Last();
 
@@ -115,12 +115,6 @@ namespace KonstProjektetV2.Controllers
         }
 
         //Ta bort konstverk med bild
-        //public ActionResult Delete()
-        //{
-        //    return View();
-        //}
-        //[HttpGet]
-
         public ActionResult Delete(string partitionKey, string rowKey)
         {
             var operation = TableOperation.Retrieve<TableModel>(partitionKey, rowKey);
@@ -142,14 +136,38 @@ namespace KonstProjektetV2.Controllers
             //return View(tablemodel);
         }
 
-        //[HttpPost]
-        //public ActionResult Delete(string partitionKey)
-        //{
-        //    var deleteoperation = TableOperation.Delete(tablemodel);
+        //Redigera existerande konstverk
+        [HttpGet]
+        public ActionResult Edit(string partitionKey, string rowKey)
+        {
+            var operation = TableOperation.Retrieve<TableModel>(partitionKey, rowKey);
 
-        //    table.Execute(deleteoperation);
+            var tablemodel = (TableModel)table.Execute(operation).Result;
 
-        //    return RedirectToAction("Index");
-        //}
+
+            var name = tablemodel.Author + "-" + tablemodel.Title + "." + tablemodel.FileEnding;
+
+            var blob = container.GetBlockBlobReference(name);
+
+            var model = new TableInsertModel()
+            {
+                Author = tablemodel.Author,
+                Title = tablemodel.Title,
+                Location = tablemodel.Location,
+                Type = tablemodel.Type,
+                Description = tablemodel.Description,
+                FileEnding = tablemodel.FileEnding,
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(TableInsertModel model)
+        {
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

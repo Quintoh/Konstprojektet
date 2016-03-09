@@ -1,0 +1,40 @@
+﻿@model IEnumerable<KonstProjektetV2.Models.TableModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <h2 style="text-align:center">Galleri</h2>
+    <p>
+        @Html.ActionLink("lägg till", "AddNew", new { })
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(x => x.Author)</th>
+                <th>@Html.DisplayNameFor(x => x.Title)</th>
+                <th>@Html.DisplayNameFor(x => x.Description)</th>
+                <th>@Html.DisplayNameFor(x => x.Type)</th>
+                <th>@Html.DisplayNameFor(x => x.Location)</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var tableModel in Model)
+            {
+                <tr>
+                    @*<td><img src="http://t4boys2016.blob.core.windows.net/fouramigos/@(tableModel.Author)-@(tableModel.Title).@tableModel.FileEnding" /></td>*@
+                    <td>@tableModel.Author</td>
+                    <td>@tableModel.Title</td>
+                    <td>@tableModel.Description</td>
+                    <td>@tableModel.Type</td>
+                    <td>@tableModel.Location</td>
+
+                    <td>@Html.ActionLink("Till konstverket", "Table", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })</td>
+                    <td>@Html.ActionLink("Ta bort konstverk", "Delete", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

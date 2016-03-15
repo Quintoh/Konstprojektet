@@ -27,8 +27,8 @@
                     </p>
                 </div>
                 <div class="col-md-2">
-                    @Html.ActionLink("Till konstverket", "Table", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })
-                    @Html.ActionLink("Redigera", "Edit", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })
+                    @Html.ActionLink("Till konstverket", "Table", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })<br /><br />
+                    @Html.ActionLink("Redigera", "Edit", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })<br /><br />
                     @Html.ActionLink("Ta bort konstverk", "Delete", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })
                 </div>
             </div>
@@ -39,4 +39,6 @@
     <button class="btn-circle btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
     <button class="btn-success btn btn-labeled"><span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>REDIGERA</button>
     <button class="btn-danger btn btn-labeled"><span class="btn-label"><i class="glyphicon glyphicon-trash"></i></span>TA BORT</button>
+
+    <button class="btn btn-test btn-success"><span class="pull-left btn-label-test glyphicon glyphicon-pencil"></span>redigera</button>
 </div>

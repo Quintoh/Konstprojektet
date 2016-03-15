@@ -5,37 +5,38 @@
 }
 
 <div class="container">
-    <h2 style="text-align:center">Galleri</h2>
     <p>
         @Html.ActionLink("lägg till", "AddNew", new { })
     </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>@Html.DisplayNameFor(x => x.Author)</th>
-                <th>@Html.DisplayNameFor(x => x.Title)</th>
-                <th>@Html.DisplayNameFor(x => x.Description)</th>
-                <th>@Html.DisplayNameFor(x => x.Type)</th>
-                <th>@Html.DisplayNameFor(x => x.Location)</th>
-            </tr>
-        </thead>
+    
+    @foreach (var tableModel in Model)
+    {
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 ContentBlock">
+                <div class="col-md-4">
+                    <img class="category-img" src="http://t4boys2016.blob.core.windows.net/fouramigos/@tableModel.FileName" />
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        @Html.DisplayNameFor(x => x.Author) : @tableModel.Author <br />
+                        @Html.DisplayNameFor(x => x.Title) : @tableModel.Title <br />
+                        @Html.DisplayNameFor(x => x.Description) : @tableModel.Description <br />
+                        @Html.DisplayNameFor(x => x.Type) : @tableModel.Type <br />
+                        @Html.DisplayNameFor(x => x.Location) : @tableModel.Location
+                    </p>
+                </div>
+                <div class="col-md-2">
+                    @Html.ActionLink("Till konstverket", "Table", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })
+                    @Html.ActionLink("Redigera", "Edit", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })
+                    @Html.ActionLink("Ta bort konstverk", "Delete", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })
+                </div>
+            </div>
+        </div>
+    }
 
-        <tbody>
-            @foreach (var tableModel in Model)
-            {
-                <tr>
-                    @*<td><img src="http://t4boys2016.blob.core.windows.net/fouramigos/@(tableModel.Author)-@(tableModel.Title).@tableModel.FileEnding" /></td>*@
-                    <td>@tableModel.Author</td>
-                    <td>@tableModel.Title</td>
-                    <td>@tableModel.Description</td>
-                    <td>@tableModel.Type</td>
-                    <td>@tableModel.Location</td>
-
-                    <td>@Html.ActionLink("Till konstverket", "Table", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })</td>
-                    <td>@Html.ActionLink("Redigera", "Edit", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })</td>
-                    <td>@Html.ActionLink("Ta bort konstverk", "Delete", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <button class="btn-circle btn-success"><span class="glyphicon glyphicon-pencil"></span></button>
+    <button class="btn-circle btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+    <button class="btn-success btn btn-labeled"><span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>REDIGERA</button>
+    <button class="btn-danger btn btn-labeled"><span class="btn-label"><i class="glyphicon glyphicon-trash"></i></span>TA BORT</button>
 </div>

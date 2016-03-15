@@ -72,12 +72,6 @@ namespace KonstProjektetV2.Controllers
 
             var tablemodel = (TableModel)table.Execute(operation).Result;
 
-
-            var name = tablemodel.Author + "-" + tablemodel.Title + "." + tablemodel.FileEnding;
-
-            var blob = container.GetBlockBlobReference(name);
-
-
             return View(tablemodel);
         }
 
@@ -95,45 +89,49 @@ namespace KonstProjektetV2.Controllers
             }
 
 
-            string fileEnding = string.Empty;
+            string name = string.Empty;
             if (model.File != null)
             {
-                fileEnding = model.File.FileName.Split('.').Last();
+                var fileEnding = model.File.FileName.Split('.').Last();
 
-                var name = model.Author + "-" + model.Title + "." + fileEnding;
+                name = Guid.NewGuid().ToString() + "." + fileEnding;
 
                 var blob = container.GetBlockBlobReference(name);
 
                 await blob.UploadFromStreamAsync(model.File.InputStream);
             }
 
-            var operation = TableOperation.Insert(new TableModel(model.Author, model.Title) { Description = model.Description, Type = model.Type, Location = model.Location, FileEnding = fileEnding });
+            var operation = TableOperation.Insert(new TableModel(model.Author, model.Title) { Description = model.Description, Type = model.Type, Location = model.Location, FileName = name });
 
             await table.ExecuteAsync(operation);
 
             return RedirectToAction("Index");
         }
 
-        //Ta bort konstverk med bild
+        /// <summary>
+        /// Ta bort konstverk med bild
+        /// </summary>
+        /// <param name="partitionKey">Artistnamn</param>
+        /// <param name="rowKey">Title</param>
+        /// <returns>Redirect to index</returns>
         public ActionResult Delete(string partitionKey, string rowKey)
         {
             var operation = TableOperation.Retrieve<TableModel>(partitionKey, rowKey);
 
             var tablemodel = (TableModel)table.Execute(operation).Result;
 
-            var name = tablemodel.Author + "-" + tablemodel.Title + "." + tablemodel.FileEnding;
-            var blob = container.GetBlockBlobReference(name);
-            blob.Delete();
-
-            var list = container.ListBlobs();
+            var name = tablemodel.FileName;
+            if (!string.IsNullOrEmpty(name))
+            {
+                var blob = container.GetBlockBlobReference(name);
+                blob.Delete();
+            }
 
             var deleteoperation = TableOperation.Delete(tablemodel);
 
             table.Execute(deleteoperation);
 
             return RedirectToAction("Index");
-
-            //return View(tablemodel);
         }
 
         //Redigera existerande konstverk
@@ -144,11 +142,6 @@ namespace KonstProjektetV2.Controllers
 
             var tablemodel = (TableModel)table.Execute(operation).Result;
 
-
-            var name = tablemodel.Author + "-" + tablemodel.Title + "." + tablemodel.FileEnding;
-
-            var blob = container.GetBlockBlobReference(name);
-
             var model = new TableInsertModel()
             {
                 Author = tablemodel.Author,
@@ -156,18 +149,47 @@ namespace KonstProjektetV2.Controllers
                 Location = tablemodel.Location,
                 Type = tablemodel.Type,
                 Description = tablemodel.Description,
-                FileEnding = tablemodel.FileEnding,
+                FileName = tablemodel.FileName,
             };
 
             return View(model);
         }
-
         [HttpPost]
-        public ActionResult Edit(TableInsertModel model)
+        public async Task<ActionResult> Edit(TableInsertModel model)
         {
+            var operation = TableOperation.Retrieve<TableModel>(model.Author, model.Title);
+
+            var tableModel = (TableModel)table.Execute(operation).Result;
+
+            string name = tableModel.FileName;
+            if (model.File != null)
+            {
+                if (!string.IsNullOrEmpty(name))
+                {
+                    var oldBlob = container.GetBlockBlobReference(name);
+                    oldBlob.Delete();
+                }
+
+                var fileEnding = model.File.FileName.Split('.').Last();
+
+                name = Guid.NewGuid().ToString() + "." + fileEnding;
+
+                var blob = container.GetBlockBlobReference(name);
+
+                await blob.UploadFromStreamAsync(model.File.InputStream);
+            }
+
+
+            tableModel.Location = model.Location;
+            tableModel.Type = model.Type;
+            tableModel.Description = model.Description;
+            tableModel.FileName = name;
+
+            var replaceOperation = TableOperation.Replace(tableModel);
+
+            table.Execute(replaceOperation);
+
             return RedirectToAction("Index");
         }
-
-
     }
 }

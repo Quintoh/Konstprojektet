@@ -35,7 +35,7 @@ namespace KonstProjektetV2.Models
 
         public string Description { get; set; }
 
-        public string FileEnding { get; set; }
+        public string FileName { get; set; }
     }
 
     public class TableInsertModel
@@ -61,6 +61,6 @@ namespace KonstProjektetV2.Models
         [DisplayName("Bild")]
         public HttpPostedFileBase File { get; set; }
 
-        public string FileEnding { get; set; }
+        public string FileName { get; set; }
     }
 }

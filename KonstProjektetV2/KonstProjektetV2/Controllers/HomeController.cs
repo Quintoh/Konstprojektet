@@ -58,11 +58,7 @@ namespace KonstProjektetV2.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var query = new TableQuery<TableModel>();
-
-            var tableModels = table.ExecuteQuery(query);
-
-            return View(tableModels);
+            return View();
         }
 
         //Vissa info om konstverk(ej obligatorisk)
@@ -191,5 +187,15 @@ namespace KonstProjektetV2.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult Gallery()
+        {
+            var query = new TableQuery<TableModel>();
+
+            var tableModels = table.ExecuteQuery(query);
+
+            return View(tableModels);
+        }
+
     }
 }

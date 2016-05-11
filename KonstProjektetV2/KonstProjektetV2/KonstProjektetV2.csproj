@@ -155,6 +155,7 @@
     <Content Include="Views\Home\Table.cshtml" />
     <Content Include="Views\Home\AddNew.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Views\Home\Gallery.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

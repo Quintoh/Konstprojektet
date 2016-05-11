@@ -197,5 +197,9 @@ namespace KonstProjektetV2.Controllers
             return View(tableModels);
         }
 
+        public ActionResult About()
+        {
+            return View();
+        }
     }
 }

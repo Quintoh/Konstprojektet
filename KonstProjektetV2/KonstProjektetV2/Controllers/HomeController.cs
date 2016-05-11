@@ -101,7 +101,7 @@ namespace KonstProjektetV2.Controllers
 
             await table.ExecuteAsync(operation);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Gallery");
         }
 
         /// <summary>

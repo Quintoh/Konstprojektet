@@ -4,13 +4,33 @@
     ViewBag.Title = "Gallery";
 }
 
+<div class="container" style="text-align: center;">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h2 style="color: #E88300;">Sök efter en tavla</h2>
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" style="text-align: center;" class="form-control input-lg" placeholder="Sök här..." />
+                    <span class="input-group-btn">
+                        <button id="button1" class="btn btn-info btn-lg" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="">
     <p>
         @Html.ActionLink("lägg till", "AddNew", new { })
     </p>
 
+
+
     @foreach (var tableModel in Model)
-    {
+            {
         <div class="row">
             <div class="col-md-1 col-xs-1"></div>
             <div class="col-md-10 col-xs-10 ContentBlock">

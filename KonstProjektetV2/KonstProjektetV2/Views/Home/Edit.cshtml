@@ -7,39 +7,44 @@
 @using (Html.BeginForm("Edit", "Home", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="row">
-        <div class="col-lg-6">
+        <h2 style="color: #E88300; text-align:center"> Redigera Konstverk </h2>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-6 col-xs-6"><p></p>
+         <img src="http://t4boys2016.blob.core.windows.net/fouramigos/@Model.FileName" width="450" class="img-rounded"/>
+         <p></p>
+       @Html.LabelFor(x => x.File)
+       @Html.TextBoxFor(m => m.File, new
+       {
+           type = "file",
+       })
+         <p></p>
+        <input type="submit" value="Spara" /></div>
+        <div class="col-md-6 col-xs-6">
+            <p></p>
             <div class="form-group">
+                @Html.TextBoxFor(x => x.Author, new { disabled = "disabled" })
                 @Html.LabelFor(x => x.Author)
                 @Html.HiddenFor(x => x.Author)
-                @Html.TextBoxFor(x => x.Author, new { disabled = "disabled" })
             </div>
             <div class="form-group">
-                @Html.LabelFor(x => x.Title)
-                @Html.HiddenFor(x => x.Title)
                 @Html.TextBoxFor(x => x.Title, new { disabled = "disabled" })
+                @Html.LabelFor(x => x.Title)
+                @Html.HiddenFor(x => x.Title)    
             </div>
             <div class="form-group">
-                @Html.LabelFor(x => x.Description)
                 @Html.TextBoxFor(x => x.Description)
+                @Html.LabelFor(x => x.Description)
             </div>
             <div class="form-group">
-                @Html.LabelFor(x => x.Type)
                 @Html.TextBoxFor(x => x.Type)
+                @Html.LabelFor(x => x.Type)
             </div>
             <div class="form-group">
-                @Html.LabelFor(x => x.Location)
                 @Html.TextBoxFor(x => x.Location)
+                @Html.LabelFor(x => x.Location)
             </div>
-            <div class="form-group">
-                <img src="http://t4boys2016.blob.core.windows.net/fouramigos/@Model.FileName" />
-                @Html.LabelFor(x => x.File)
-                @Html.TextBoxFor(m => m.File, new
-                {
-                    type = "file",
-                })
-            </div>
-
-            <input type="submit" value="Spara" />
         </div>
     </div>
 }

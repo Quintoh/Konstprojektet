@@ -197,5 +197,10 @@ namespace KonstProjektetV2.Controllers
             return View(tableModels);
         }
 
+        public ActionResult LogIn()
+        {
+            return View();
+        }
+
     }
 }

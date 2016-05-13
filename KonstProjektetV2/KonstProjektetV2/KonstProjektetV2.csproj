@@ -122,9 +122,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\hudd_logo_mini.jpg" />
-    <Content Include="Content\Image\2015_Pia_Nordlander_15117-425_Startsidan_hemsida.jpg" />
     <Content Include="Content\Image\hudd_logo_mini.jpg" />
+    <Content Include="Content\Image\kanin.jpg" />
     <Content Include="Content\Image\ostragymnasiet.gif" />
+    <Content Include="Content\Image\random.jpg" />
+    <Content Include="Content\Image\skola.jpg" />
     <Content Include="Content\LayoutStyle.css" />
     <Content Include="Content\ostragymnasiet.gif" />
     <Content Include="Content\Site.css" />

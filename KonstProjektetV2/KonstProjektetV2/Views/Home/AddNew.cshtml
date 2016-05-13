@@ -11,33 +11,37 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="form-group">
-                @Html.LabelFor(x => x.Author)
                 @Html.TextBoxFor(x => x.Author)
+                @Html.LabelFor(x => x.Author)         
                 @Html.ValidationMessageFor(model => model.Author)
             </div>
             <div class="form-group">
-                @Html.LabelFor(x => x.Title)
                 @Html.TextBoxFor(x => x.Title)
+                @Html.LabelFor(x => x.Title)
                 @Html.ValidationMessageFor(model => model.Title)
             </div>
             <div class="form-group">
-                @Html.LabelFor(x => x.Description)
                 @Html.TextBoxFor(x => x.Description)
+                @Html.LabelFor(x => x.Description)
+                
             </div>
             <div class="form-group">
-                @Html.LabelFor(x => x.Type)
                 @Html.TextBoxFor(x => x.Type)
+                @Html.LabelFor(x => x.Type)
+                
             </div>
             <div class="form-group">
-                @Html.LabelFor(x => x.Location)
                 @Html.TextBoxFor(x => x.Location)
+                @Html.LabelFor(x => x.Location)
+                
             </div>
             <div class="form-group">
-            @Html.LabelFor(x => x.File)
             @Html.TextBoxFor(m => m.File, new
-            {
-                type = "file",
-            })
+                {
+                    type = "file",
+                })
+            @Html.LabelFor(x => x.File)
+       
             </div>
 
             <input type="submit" value="Lägg till" />

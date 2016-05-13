@@ -24,17 +24,23 @@ namespace KonstProjektetV2.Models
         public TableModel() {
         }
 
+        [DisplayName("Artist")]
         public string Author { get { return _author; } set { this.PartitionKey = value; _author = value; } }
 
+        [DisplayName("Titel")]
         public string Title { get { return _title; } set { this.RowKey = value; _title = value; } }
 
 
+        [DisplayName("Plats")]
         public string Location { get; set; }
 
+        [DisplayName("Typ")]
         public string Type { get; set; }
 
+        [DisplayName("Beskrivning")]
         public string Description { get; set; }
 
+        [DisplayName("Bild")]
         public string FileName { get; set; }
     }
 

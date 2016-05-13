@@ -4,13 +4,40 @@
     ViewBag.Title = "Gallery";
 }
 
-<div class="">
-    <p>
-        @Html.ActionLink("lägg till", "AddNew", new { })
-    </p>
+<div class="container">
+    <div class="row">
+        
+        
+        <div class="col-md-6 center"  style="text-align: center;">
+            
+            <h2 style="color: #E88300;">Sök efter en tavla</h2>
+            <div id="custom-search-input" style="text-align:center;">
+                <div class="input-group col-md-12">
+                    <input type="text" style="text-align: center;" class="form-control input-lg" placeholder="Sök här..." />
+                    <span class="input-group-btn">
+                        <button id="button1" class="btn btn-info btn-lg" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="col-lg-6 center" style="text-align:center;">
+    <a href="@Url.Action("AddNew", "Home", new { })" class="btn-success btn btn-labeled">
+                        <span class="btn-label"><i class="glyphicon glyphicon-plus"></i></span>
+                        Lägg till konstverk
+                    </a>
+</div>
+
+
 
     @foreach (var tableModel in Model)
-    {
+            {
         <div class="row">
             <div class="col-md-1 col-xs-1"></div>
             <div class="col-md-10 col-xs-10 ContentBlock">
@@ -26,19 +53,29 @@
                         @Html.DisplayNameFor(x => x.Location) : @tableModel.Location
                     </p>
                 </div>
-                <div class="col-md-2 col-xs-2">
-                    @Html.ActionLink("Redigera", "Edit", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })<br /><br />
-                    @Html.ActionLink("Ta bort konstverk", "Delete", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })
+                <div class="col-md-2 col-xs-4">
+
+                    @*Edit Button*@
+                    <a href="@Url.Action("Edit", "Home", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })" class="btn-success btn btn-labeled">
+                        <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>
+                        Redigera 
+                    </a>
+
+                    @*Delete Button*@
+                    <a href="@Url.Action("Delete", "Home", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })" class="btn-danger btn btn-labeled">
+                        <span class="btn-label"><i class="glyphicon glyphicon-trash"></i></span>
+                        Ta bort
+                    </a>
                 </div>
             </div>
         </div>
     }
 
-    <button class="btn-circle btn-success"><span class="glyphicon glyphicon-pencil"></span></button>
+    @*<button class="btn-circle btn-success"><span class="glyphicon glyphicon-pencil"></span></button>
     <button class="btn-circle btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
     <button class="btn-success btn btn-labeled"><span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>REDIGERA</button>
     <button class="btn-danger btn btn-labeled"><span class="btn-label"><i class="glyphicon glyphicon-trash"></i></span>TA BORT</button>
 
-    <button class="btn btn-test btn-success"><span class="pull-left btn-label-test glyphicon glyphicon-pencil"></span>redigera</button>
-</div>
+    <button class="btn btn-test btn-success"><span class="pull-left btn-label-test glyphicon glyphicon-pencil"></span>redigera</button>*@
+
 

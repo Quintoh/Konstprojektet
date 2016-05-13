@@ -101,7 +101,7 @@ namespace KonstProjektetV2.Controllers
 
             await table.ExecuteAsync(operation);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Gallery");
         }
 
         /// <summary>
@@ -195,6 +195,11 @@ namespace KonstProjektetV2.Controllers
             var tableModels = table.ExecuteQuery(query);
 
             return View(tableModels);
+        }
+
+        public ActionResult LogIn()
+        {
+            return View();
         }
 
     }

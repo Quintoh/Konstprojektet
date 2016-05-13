@@ -201,6 +201,10 @@ namespace KonstProjektetV2.Controllers
         {
             return View();
         }
+        public ActionResult About()
+        {
+            return View();
+        }
 
     }
 }

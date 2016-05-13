@@ -13,8 +13,8 @@
     </div>
         <hr />
     <div class="row">
-        <div class="col-lg-6">
-            <input type="submit" value="Lägg till" />
+        <div class="col-md-6 col-xs-6">
+            
             <div class="form-group">
                 @Html.LabelFor(x => x.File)
                 <p>
@@ -23,10 +23,11 @@
               type = "file",
           })
             </p>
+           <input type="submit" value="Lägg till" />
         </div>
         
         </div>
-        <div class=col-lg-4>
+        <div class="col-md-6 col-xs-6">
             <div class="form-group">
                 @Html.LabelFor(x => x.Author)
                 <p>@Html.TextBoxFor(x => x.Author)</p>

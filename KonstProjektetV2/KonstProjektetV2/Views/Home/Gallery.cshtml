@@ -62,10 +62,29 @@
                     </a>
 
                     @*Delete Button*@
-                    <a href="@Url.Action("Delete", "Home", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })" class="btn-danger btn btn-labeled">
+                    <a href="#ModalPopup" id="deleteBtn" class="btn-danger btn btn-labeled" data-toggle="modal">
                         <span class="btn-label"><i class="glyphicon glyphicon-trash"></i></span>
-                        Ta bort
-                    </a>
+                        Ta bort</a>
+                    <div id="ModalPopup" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-lg">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Ta bort konstverk</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Är du säker på att du vill ta bort detta konstverk?</p>
+                                    <button type="button" class="close" data-dismiss="modal">Avbryt</button> 
+                                    <a href="@Url.Action("Delete", "Home", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })" style="float: right;" class="btn-success btn btn-labeled">
+                                        <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>
+                                        Ta bort
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -187,13 +187,19 @@ namespace KonstProjektetV2.Controllers
 
             return RedirectToAction("Index");
         }
-
-        public ActionResult Gallery()
+        string text;
+        public ActionResult Gallery(string search)
         {
             var query = new TableQuery<TableModel>();
-
             var tableModels = table.ExecuteQuery(query);
+            
 
+            if (!string.IsNullOrEmpty(search))
+            {
+                tableModels = tableModels.Where(x => x.PartitionKey.Contains(search));
+                ViewBag.SearchWord = search;
+            }
+ 
             return View(tableModels);
         }
 

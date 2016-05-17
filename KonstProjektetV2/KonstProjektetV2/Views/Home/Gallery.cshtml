@@ -4,80 +4,106 @@
     ViewBag.Title = "Gallery";
 }
 
-<div class="container">
-    <div class="row">
-        
-        
-        <div class="col-md-6 center"  style="text-align: center;">
-            
-            <h2 style="color: #E88300;">Sök efter en tavla</h2>
-            <div id="custom-search-input" style="text-align:center;">
-                <div class="input-group col-md-12">
-                    <input type="text" style="text-align: center;" class="form-control input-lg" placeholder="Sök här..." />
-                    <span class="input-group-btn">
-                        <button id="button1" class="btn btn-info btn-lg" type="button">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
+@using (Html.BeginForm())
+{
+
+    string placeholder = "Sök här...";
+
+    string searchText = ViewBag.SearchWord;
+
+    if (searchText != null && searchText != "")
+    {
+        placeholder = searchText;
+    }
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 center" style="text-align: center;">
+                <h2 style="color: #E88300;">Sök efter en tavla</h2>
+                <div id="custom-search-input" style="text-align:center;">
+                    <div class="input-group col-md-12">
+                        <input type="text" id="search" name="search" style="text-align: center;" class="form-control input-lg" placeholder=@placeholder />
+                        <span class="input-group-btn">
+                            <button onclick="searchClick" id="button1" class="btn btn-info btn-lg" type="submit">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    searchText = ViewBag.SearchWord;
+
+    if (searchText != null && searchText != "")
+    {
+        <div class="container center" style="text-align: center;">
+            <h3 class="center">
+                Filter: @ViewBag.SearchWord
+                <a href="@Url.Action("Gallery", "Home")">
+                    <span style="float: none;"><i class="glyphicon glyphicon-remove"></i></span>
+                </a>
+            </h3>
+        </div>
+    }
+}
 
 <hr />
 
 <div class="col-lg-6 center" style="text-align:center;">
     <a href="@Url.Action("AddNew", "Home", new { })" class="btn-success btn btn-labeled">
-                        <span class="btn-label"><i class="glyphicon glyphicon-plus"></i></span>
-                        Lägg till konstverk
-                    </a>
+        <span class="btn-label"><i class="glyphicon glyphicon-plus"></i></span>
+        Lägg till konstverk
+    </a>
 </div>
 
-
-
-    @foreach (var tableModel in Model)
+@foreach (var tableModel in Model)
             {
-        <div class="row">
-            <div class="col-md-1 col-xs-1"></div>
-            <div class="col-md-10 col-xs-10 ContentBlock">
-                <div class="col-md-4 col-xs-4">
-                    <img class="category-img" src="http://t4boys2016.blob.core.windows.net/fouramigos/@tableModel.FileName" />
-                </div>
-                <div class="col-md-6 col-xs-6">
-                    <p>
-                        @Html.DisplayNameFor(x => x.Author) : @tableModel.Author <br />
-                        @Html.DisplayNameFor(x => x.Title) : @tableModel.Title <br />
-                        @Html.DisplayNameFor(x => x.Description) : @tableModel.Description <br />
-                        @Html.DisplayNameFor(x => x.Type) : @tableModel.Type <br />
-                        @Html.DisplayNameFor(x => x.Location) : @tableModel.Location
-                    </p>
-                </div>
-                <div class="col-md-2 col-xs-4">
+    <div class="row">
+        <div class="col-md-1 col-xs-1"></div>
+        <div class="col-md-10 col-xs-10 ContentBlock">
+            <div class="col-md-4 col-xs-4">
+                <img class="category-img" src="http://t4boys2016.blob.core.windows.net/fouramigos/@tableModel.FileName" />
+            </div>
+            <div class="col-md-6 col-xs-6">
+                <p>
+                    @Html.DisplayNameFor(x => x.Author) : @tableModel.Author <br />
+                    @Html.DisplayNameFor(x => x.Title) : @tableModel.Title <br />
+                    @Html.DisplayNameFor(x => x.Description) : @tableModel.Description <br />
+                    @Html.DisplayNameFor(x => x.Type) : @tableModel.Type <br />
+                    @Html.DisplayNameFor(x => x.Location) : @tableModel.Location
+                </p>
+            </div>
+            <div class="col-md-2 col-xs-4">
 
-                    <div class="dropdown" style="float: right;">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-cog"></span>
-                        </button>
-                        <ul class="dropdown-menu" style="float: left;">
-                            <li>@*Edit Button*@
+                <div class="dropdown" style="float: right;">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </button>
+                    <ul class="dropdown-menu" style="float: left;">
+                        <li>
+                            @*Edit Button*@
                             <a href="@Url.Action("Edit", "Home", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })">
                                 Redigera
                                 <span style="float: right;"><i class="glyphicon glyphicon-pencil"></i></span>
-                            </a></li>
-                            <li>@*Delete Button*@
+                            </a>
+                        </li>
+                        <li>
+                            @*Delete Button*@
                             <a href="@Url.Action("Delete", "Home", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })">
-                               Ta bort
+                                Ta bort
                                 <span style="float: right;"><i class="glyphicon glyphicon-trash"></i></span>
-                            </a></li>
-                        </ul>
-                    </div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    }
+    </div>
+}
 
-    @*<button class="btn-circle btn-success"><span class="glyphicon glyphicon-pencil"></span></button>
+@*<button class="btn-circle btn-success"><span class="glyphicon glyphicon-pencil"></span></button>
     <button class="btn-circle btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
     <button class="btn-success btn btn-labeled"><span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>REDIGERA</button>
     <button class="btn-danger btn btn-labeled"><span class="btn-label"><i class="glyphicon glyphicon-trash"></i></span>TA BORT</button>

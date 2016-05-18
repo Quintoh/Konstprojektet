@@ -38,7 +38,7 @@
     </div>
 
     <hr />
-    
+
 
     if (searchText != null && searchText != "")
     {
@@ -56,68 +56,74 @@
 
 @foreach (var tableModel in Model)
 {
-            {
-    <div class="row">
-        <div class="col-md-1 col-xs-1"></div>
-        <div class="col-md-10 col-xs-10 ContentBlock">
-            <div class="col-md-4 col-xs-4">
-                <img class="category-img" src="http://t4boys2016.blob.core.windows.net/fouramigos/@tableModel.FileName" />
-            </div>
-            <div class="col-md-6 col-xs-6">
-                <p>
-                    @Html.DisplayNameFor(x => x.Author) : @tableModel.Author <br />
-                    @Html.DisplayNameFor(x => x.Title) : @tableModel.Title <br />
-                    @Html.DisplayNameFor(x => x.Description) : @tableModel.Description <br />
-                    @Html.DisplayNameFor(x => x.Type) : @tableModel.Type <br />
-                    @Html.DisplayNameFor(x => x.Location) : @tableModel.Location
-                </p>
-            </div>
-            <div class="col-md-2 col-xs-4">
-
-                <div class="dropdown" style="float: right;">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-cog"></span>
-                    </button>
-                    <ul class="dropdown-menu" style="float: left;">
-                        <li>
-                            @*Edit Button*@
-                            <a href="@Url.Action("Edit", "Home", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })">
-                                Redigera
-                                <span style="float: right;"><i class="glyphicon glyphicon-pencil"></i></span>
-                            </a>
-                        </li>
-                        <li>
-                            @*Delete Button*@
-                    <a href="#ModalPopup" id="deleteBtn" class="btn-danger btn btn-labeled" data-toggle="modal">
-                        <span class="btn-label"><i class="glyphicon glyphicon-trash"></i></span>
-                        Ta bort</a>
-                    <div id="ModalPopup" class="modal fade" role="dialog">
-                        <div class="modal-dialog modal-lg  modal-body">
-
-                            <!-- Modal content-->
-                            
-                            <div class="modal-content modal-body">
-                                 <button type="button" class="close " data-dismiss="modal">&times;</button>
-                                  <h4 class="modal-title modalText-modal">Är du säker på att du vill ta bort detta konstverk?</h4>
-                                <hr />
-                                <div class="row" style="text-align: center;" >
-                                        <a href="@Url.Action("Delete", "Home", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })" class="promtBtn-modal btn-labeled btn promtBtnStyle-modal">
-                                            Ja
-                                        </a>
-                                        
-                                        <a href=""data-dismiss="modal" class="promtBtn-modal btn-labeled btn promtBtnStyle-modal">
-                                            Avbryt
-                                        </a>  
-                        </li>
-                    </ul>
+    {
+        <div class="row center">
+            <div class="col-md-1 col-xs-1"></div>
+            <div class="col-md-10 col-xs-10 ContentBlock">
+                <div class="col-md-4 col-xs-4">
+                    <img class="category-img" src="http://t4boys2016.blob.core.windows.net/fouramigos/@tableModel.FileName" />
                 </div>
-                                </div>
-                            </div>
+                <div class="col-md-6 col-xs-6">
+                    <p>
+                        @Html.DisplayNameFor(x => x.Author) : @tableModel.Author <br />
+                        @Html.DisplayNameFor(x => x.Title) : @tableModel.Title <br />
+                        @Html.DisplayNameFor(x => x.Description) : @tableModel.Description <br />
+                        @Html.DisplayNameFor(x => x.Type) : @tableModel.Type <br />
+                        @Html.DisplayNameFor(x => x.Location) : @tableModel.Location
+                    </p>
+                </div>
+                <div class="col-md-2 col-xs-4">
+
+                    <div class="dropdown" style="float: right;">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </button>
+                        <ul class="dropdown-menu" style="float: left;">
+                            <li>
+                                @*Edit Button*@
+                                <a href="@Url.Action("Edit", "Home", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })">
+                                    Redigera
+                                    <span style="float: right;"><i class="glyphicon glyphicon-pencil"></i></span>
+                                </a>
+                            </li>
+                            <li>
+                                @*Delete Button*@
+                                <a href="#ModalPopup" data-toggle="modal">
+                                    Ta bort
+                                    <span style="float: right;"><i class="glyphicon glyphicon-trash"></i></span>
+                                </a>
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="ModalPopup" class="modal fade " role="dialog">
+                <div class="modal-dialog modal-lg  modal-body">
+
+                    <!-- Modal content-->
+                    <div class="modal-content modal-body">
+                        <button type="button" class="close " data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title modalText-modal">Är du säker på att du vill ta bort detta konstverk?</h4>
+                        <hr />
+                        <div class="row" style="text-align: center;">
+                            <a href="@Url.Action("Delete", "Home", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })" class="promtBtn-modal btn-labeled btn promtBtnStyle-modal">
+                                Ja
+
+                            </a>
+
+                            <a href="" data-dismiss="modal" class="promtBtn-modal btn-labeled btn promtBtnStyle-modal">
+                                Avbryt
+
+                            </a>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
-    </div>
+
+        
+    }
 }
 
 @*<button class="btn-circle btn-success"><span class="glyphicon glyphicon-pencil"></span></button>

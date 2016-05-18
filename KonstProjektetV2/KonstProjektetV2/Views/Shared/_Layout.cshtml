@@ -30,7 +30,7 @@
                     <li id="nav-about" @Html.IsActive("About", "Home", "class=\"active-nav\"")> @Html.ActionLink("Om oss", "About", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li @*@Html.IsActive("Login", "Account", "class=\"active\"")*@>@Html.ActionLink("Logga in", "Login", "Home")</li>
+                    <li id="nav-login" @*@Html.IsActive("Login", "Account", "class=\"active\"")*@>@Html.ActionLink("Logga in", "Login", "Home")</li>
                 </ul>
             </div>
         </div>

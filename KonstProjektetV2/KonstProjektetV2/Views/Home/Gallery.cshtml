@@ -69,18 +69,20 @@
                         <div class="modal-dialog modal-lg  modal-body">
 
                             <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header ">
-                                    <button type="button" class="close " data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title modalText-modal">Ta bort konstverk</h4>
+                            
+                            <div class="modal-content modal-body">
+                                 <button type="button" class="close " data-dismiss="modal">&times;</button>
+                                  <h4 class="modal-title modalText-modal">Är du säker på att du vill ta bort detta konstverk?</h4>
+                                <hr />
+                                <div class="row" style="text-align: center;" >
+                                        <a href="@Url.Action("Delete", "Home", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })" class="promtBtn-modal btn-labeled btn promtBtnStyle-modal">
+                                            Ja
+                                        </a>
+                                        
+                                        <a href=""data-dismiss="modal" class="promtBtn-modal btn-labeled btn promtBtnStyle-modal">
+                                            Avbryt
+                                        </a>  
                                 </div>
-                                <div class="modalText-modal">
-                                    <p>Är du säker på att du vill ta bort detta konstverk?</p>
-                                    </div>
-                                    <div class="deleteKonst-modal">
-                                        <button type="button" class="btn-success btn btn-labeled" style="float: right;" data-dismiss="modal">Avbryt</button>
-                                        <a href="@Url.Action("Delete", "Home", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })" style="float: right;" class="btn-success btn btn-labeled"> Ta bort </a>
-                                    </div>
                             </div>
                         </div>
                     </div>

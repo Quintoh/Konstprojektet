@@ -97,7 +97,7 @@ namespace KonstProjektetV2.Controllers
                 await blob.UploadFromStreamAsync(model.File.InputStream);
             }
 
-            var operation = TableOperation.Insert(new TableModel(model.Author, model.Title) { Description = model.Description, Type = model.Type, Location = model.Location, FileName = name });
+            var operation = TableOperation.Insert(new TableModel(model.AuthorKey, model.TitleKey) { Author = model.AuthorKey, Title = model.TitleKey, Description = model.Description, Type = model.Type, Location = model.Location, FileName = name });
 
             await table.ExecuteAsync(operation);
 
@@ -127,7 +127,7 @@ namespace KonstProjektetV2.Controllers
 
             table.Execute(deleteoperation);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Gallery");
         }
 
         //Redigera existerande konstverk
@@ -140,6 +140,8 @@ namespace KonstProjektetV2.Controllers
 
             var model = new TableInsertModel()
             {
+                AuthorKey = tablemodel.PartitionKey,
+                TitleKey = tablemodel.RowKey,
                 Author = tablemodel.Author,
                 Title = tablemodel.Title,
                 Location = tablemodel.Location,
@@ -153,7 +155,7 @@ namespace KonstProjektetV2.Controllers
         [HttpPost]
         public async Task<ActionResult> Edit(TableInsertModel model)
         {
-            var operation = TableOperation.Retrieve<TableModel>(model.Author, model.Title);
+            var operation = TableOperation.Retrieve<TableModel>(model.AuthorKey, model.TitleKey);
 
             var tableModel = (TableModel)table.Execute(operation).Result;
 
@@ -176,6 +178,8 @@ namespace KonstProjektetV2.Controllers
             }
 
 
+            tableModel.Author = model.Author;
+            tableModel.Title = model.Title;
             tableModel.Location = model.Location;
             tableModel.Type = model.Type;
             tableModel.Description = model.Description;
@@ -185,9 +189,9 @@ namespace KonstProjektetV2.Controllers
 
             table.Execute(replaceOperation);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Gallery");
         }
-        string text;
+
         public ActionResult Gallery(string search)
         {
             var query = new TableQuery<TableModel>();
@@ -196,7 +200,7 @@ namespace KonstProjektetV2.Controllers
 
             if (!string.IsNullOrEmpty(search))
             {
-                tableModels = tableModels.Where(x => x.PartitionKey.Contains(search));
+                tableModels = tableModels.Where(x => x.Author.ToLower().Contains(search.ToLower()) || x.Title.ToLower().Contains(search.ToLower()) || x.Description.ToLower().Contains(search.ToLower()));
                 ViewBag.SearchWord = search;
             }
  

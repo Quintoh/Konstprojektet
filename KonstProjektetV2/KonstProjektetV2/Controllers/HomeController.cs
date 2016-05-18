@@ -126,8 +126,10 @@ namespace KonstProjektetV2.Controllers
             var deleteoperation = TableOperation.Delete(tablemodel);
 
             table.Execute(deleteoperation);
-
-            return RedirectToAction("Index");
+         
+                return RedirectToAction("Gallery");
+            
+            
         }
 
         //Redigera existerande konstverk

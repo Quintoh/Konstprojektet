@@ -26,7 +26,11 @@
         </div>
         
         </div>
+<<<<<<< HEAD
         <div class="col-md-6 col-xs-6">
+=======
+        <div class="col-lg-4">
+>>>>>>> origin/Sefik
             <div class="form-group">
                 @Html.LabelFor(x => x.Author)
                 <p>@Html.TextBoxFor(x => x.AuthorKey)</p>

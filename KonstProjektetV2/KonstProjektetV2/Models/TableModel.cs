@@ -15,21 +15,24 @@ namespace KonstProjektetV2.Models
     {
         private string _author;
         private string _title;
-        public TableModel(string artist, string title)
+        public TableModel(string artistKey, string titleKey)
         {
-            Title = title;
-            Author = artist;
+            TitleKey = titleKey;
+            AuthorKey = artistKey;
         }
 
         public TableModel() {
         }
 
+        public string AuthorKey { get { return _author; } set { this.PartitionKey = value; _author = value; } }
+
+        public string TitleKey { get { return _title; } set { this.RowKey = value; _title = value; } }
+
         [DisplayName("Artist")]
-        public string Author { get { return _author; } set { this.PartitionKey = value; _author = value; } }
+        public string Author { get; set; }
 
         [DisplayName("Titel")]
-        public string Title { get { return _title; } set { this.RowKey = value; _title = value; } }
-
+        public string Title { get; set; }
 
         [DisplayName("Plats")]
         public string Location { get; set; }
@@ -46,14 +49,18 @@ namespace KonstProjektetV2.Models
 
     public class TableInsertModel
     {
-        [DisplayName("Artist")]
         [Required]
+        public string AuthorKey { get; set; }
+
+        [Required]
+        public string TitleKey { get; set; }
+        
+
+        [DisplayName("Artist")]
         public string Author { get; set; }
 
         [DisplayName("Titel")]
-        [Required]
         public string Title { get; set; }
-
 
         [DisplayName("Plats")]
         public string Location { get; set; }

@@ -19,6 +19,7 @@ namespace KonstProjektetV2.Controllers
         CloudTableClient tableClient;
         CloudBlobClient blobClient;
         CloudTable table;
+        CloudTable tableAdmin;
         CloudBlobContainer container;
 
         public HomeController()
@@ -31,6 +32,10 @@ namespace KonstProjektetV2.Controllers
             table = tableClient.GetTableReference("fouramigos");
 
             table.CreateIfNotExists();
+
+            tableAdmin = tableClient.GetTableReference("fouramigosAdmin");
+
+            tableAdmin.CreateIfNotExists();
 
             blobClient = storageAccount.CreateCloudBlobClient();
 

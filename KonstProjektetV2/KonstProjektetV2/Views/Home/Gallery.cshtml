@@ -88,50 +88,74 @@
                                 </a>
                             </li>
                             <li>
-                                @*Delete Button*@
-                                <a href="#ModalPopup" data-toggle="modal">
-                                    Ta bort
-                                    <span style="float: right;"><i class="glyphicon glyphicon-trash"></i></span>
-                                </a>
-                                
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div id="ModalPopup" class="modal fade " role="dialog">
-                <div class="modal-dialog modal-lg  modal-body">
+                                @*@Delete Button*@
+                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-                    <!-- Modal content-->
-                    <div class="modal-content modal-body">
-                        <button type="button" class="close " data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title modalText-modal">Är du säker på att du vill ta bort detta konstverk?</h4>
-                        <hr />
-                        <div class="row" style="text-align: center;">
-                            <a href="@Url.Action("Delete", "Home", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })" class="promtBtn-modal btn-labeled btn promtBtnStyle-modal">
-                                Ja
+                                <div class="row center">
+                                    <button data-target="modal1" class="btn modal-trigger">Ta bort</button>
+                                </div>
+                                <!-- Modal Structure -->
+                                <div id="modal1" class="modal center">
+                                    <div class="modal-content">
+                                        <a href="#!" class="modal-action modal-close btn-flat promtBtnStyle-modal"style="float:right;">X</a>
+                                        <div>
+                                            <h5 style="text-align:center">Är du säker att du vill ta bort detta konstverk?</h5>
+                                            <hr />
+                                            <a href="@Url.Action("Delete", "Home", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })">Ja</a>
+                                            <a href="#!" class="modal-action modal-close btn-flat ">Avbryt</a>
+                                        </div>
+                                    </div> 
+                                </div>
 
-                            </a>
+                                <script>
+                                $(document).ready(function () {
+                                // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+                                $('.modal-trigger').leanModal();
+                                  });
+                                </script>
 
-                            <a href="" data-dismiss="modal" class="promtBtn-modal btn-labeled btn promtBtnStyle-modal">
-                                Avbryt
-
-                            </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
+           
+               <script>$(document).ready(function () {
+              // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+              $('.modal-trigger').leanModal();
+             });</script>
             </div>
-        </div>
 
-        
+
+        }
     }
-}
-
-@*<button class="btn-circle btn-success"><span class="glyphicon glyphicon-pencil"></span></button>
-    <button class="btn-circle btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-    <button class="btn-success btn btn-labeled"><span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>REDIGERA</button>
-    <button class="btn-danger btn btn-labeled"><span class="btn-label"><i class="glyphicon glyphicon-trash"></i></span>TA BORT</button>
-
-    <button class="btn btn-test btn-success"><span class="pull-left btn-label-test glyphicon glyphicon-pencil"></span>redigera</button>*@
 
 
+    @*<button class="btn-circle btn-success"><span class="glyphicon glyphicon-pencil"></span></button>
+        <button class="btn-circle btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+        <button class="btn-success btn btn-labeled"><span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>REDIGERA</button>
+        <button class="btn-danger btn btn-labeled"><span class="btn-label"><i class="glyphicon glyphicon-trash"></i></span>TA BORT</button>
+
+        <button class="btn btn-test btn-success"><span class="pull-left btn-label-test glyphicon glyphicon-pencil"></span>redigera</button>*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<div class="row center">
+    <button data-target="modal1" class="btn modal-trigger">Modal</button>
+</div>
+<!-- Modal Structure -->
+<div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal-trigger').leanModal();
+    });
+</script>

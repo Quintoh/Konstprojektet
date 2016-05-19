@@ -139,21 +139,13 @@
 .modal-body{
     height: auto;
 }
-.modalText-modal{
-    text-align:center;
-    margin-left: auto;
-    margin-right: auto;
-}
-.promtBtn-modal{
-    text-align:center; 
-    margin: 5px; 
-}
+
 .promtBtnStyle-modal{
-    color:white;
+    color:#E88300;
     
 }
 .promtBtnStyle-modal:hover{
-    color:gray;
+    color:black;
 }
 .modal{
     margin: 0;
@@ -164,4 +156,5 @@
     margin-left: auto;
     margin-right: auto;
 }
+
 

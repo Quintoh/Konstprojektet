@@ -133,6 +133,7 @@
 .btn{
     background-color: #E88300;
     color: black;
+    margin: 5px;
 }
 
 .btn:hover{

@@ -5,7 +5,7 @@ Vårt mål är att skapa en hemsida för Östra Gymnasiets konstverk.
 
 Vår hemsida innehåller all konstverk som gymnasiet innehaver.
 
-Fördelar
+Fördelar:
 Hemsidan sparar tid för användaren. Detta innebär att systemet blir mer användarvänlig och
 det blir enklare att lägga till och ta bort konstverk från systemet.
 Det blir även enklare att hitta den konst man söker och det förminskar arbetskraften att uppdatera arkivet/systemet.

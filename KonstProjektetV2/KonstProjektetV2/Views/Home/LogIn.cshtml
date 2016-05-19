@@ -2,18 +2,35 @@
 @{
     ViewBag.Title = "LogIn";
 }
+<h2 style="color: #000;" class="form-signin-heading center">Logga in</h2>
 
-<div class="container" style="text-align:center;">
-    <form class="form-signin">
-        <h2 style="color: #000;" class="form-signin-heading">Logga in</h2>
-        <label for="inputUsername" class="sr-only">Användrnamn</label>
-        <input type="text" id="inputUsername" class="form-inline" placeholder="Användarnamn" required autofocus>
-        <label for="inputPassword" class="sr-only">Lösenord</label>
-        <input type="password" id="inputPassword" class="form-inline" placeholder="Lösenord" required>
-        <p>
-
-        </p>
-        <button class="btn-success btn btn-labeled"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>Logga in</button>
-    </form>
+<div class="container center">
+    <div class="row" style="text-align: center;">
+        <form class="col l12 col s12 form-signin">
+            <div class="row" style="text-align: center;">
+                <div class="input-field col l6 offset-l3 col s6 offset-s3">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input placeholder="Användarnamn" id="inputUsername" type="text" class="validate">
+                </div>
+            </div>
+            <div class="row" style="text-align: center;">
+                <div class="input-field col l6 offset-l3 col s6 offset-s3">
+                    <i class="material-icons prefix">lock</i>
+                    <input placeholder="Lösenord" id="inputPassword" type="text" class="validate">
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 
+<div class="col l2 offset-l3 col s2 offset-s3 center">
+    <a class="waves-effect waves-light btn col l12 center">Logga in</a>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        Materialize.updateTextFields();
+    });
+</script>

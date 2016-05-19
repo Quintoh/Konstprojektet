@@ -7,22 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-<<<<<<< HEAD
     @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />*@
+<<<<<<< HEAD
     
 =======
-   
->>>>>>> origin/Niklas
+>>>>>>> origin/Sefik
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     
     <link href="~/Content/full-slider.css" rel="stylesheet" type="text/css" />
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="~/materialize/css/materialize.min.css" media="screen,projection" />
-    <link href="~/Content/Homestyle.css" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<<<<<<< HEAD
     <link href="~/Content/LayoutStyle.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Homestyle.css" rel="stylesheet" type="text/css" />
 
+=======
+    <link href="~/Content/Homestyle.css" rel="stylesheet" type="text/css" />
+    
+>>>>>>> origin/Sefik
 </head>
 <body>
     <nav>

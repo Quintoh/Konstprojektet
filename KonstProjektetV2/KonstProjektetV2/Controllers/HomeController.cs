@@ -207,7 +207,11 @@ namespace KonstProjektetV2.Controllers
             if (!string.IsNullOrEmpty(search))
             {
                 tableModels = tableModels.Where(x => x.Author.ToLower().Contains(search.ToLower()) || x.Title.ToLower().Contains(search.ToLower()) || x.Description.ToLower().Contains(search.ToLower()));
-                ViewBag.SearchWord = search;
+                ViewBag.SearchWord ="Filter: " +  search;
+                if (!tableModels.Any())
+                {
+                    ViewBag.SearchWord = "Inga konstverk hittades...";
+                }
             }
  
             return View(tableModels);

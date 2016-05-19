@@ -55,7 +55,6 @@ namespace KonstProjektetV2.Models
         [Required]
         public string TitleKey { get; set; }
         
-
         [DisplayName("Artist")]
         public string Author { get; set; }
 
@@ -68,6 +67,7 @@ namespace KonstProjektetV2.Models
         [DisplayName("Typ")]
         public string Type { get; set; }
 
+        [Required]
         [DisplayName("Beskrivning")]
         public string Description { get; set; }
 

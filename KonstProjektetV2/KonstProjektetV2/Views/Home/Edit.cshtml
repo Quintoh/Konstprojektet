@@ -7,11 +7,12 @@
 @using (Html.BeginForm("Edit", "Home", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="row">
-        <h2 style="color: #E88300; text-align:center"> Redigera Konstverk </h2>
+        <h2 style="color: #000; text-align:center"> Redigera Konstverk </h2>
     </div>
     <hr />
-    <div class="row">
-        <div class="col-md-6 col-xs-6"><p></p>
+
+    <div class="row col l12 col s12">
+        <div class="col l6 col s6"><p></p>
          <img src="http://t4boys2016.blob.core.windows.net/fouramigos/@Model.FileName" width="450" class="img-rounded"/>
          <p></p>
        @Html.LabelFor(x => x.File)
@@ -21,27 +22,27 @@
        })
          <p></p>
         <input type="submit" value="Spara" /></div>
-        <div class="col-md-6 col-xs-6">
+        <div class="col l6 col s12 ">
             <p></p>
-            <div class="form-group">
+            <div class="form-group col l12 col s12">
                 @Html.LabelFor(x => x.Author)
                 <p>@Html.TextBoxFor(x => x.Author)</p>
                 @Html.HiddenFor(x => x.Author)
             </div>
-            <div class="form-group">
+            <div class="form-group col l12 col s12">
                 @Html.LabelFor(x => x.Title)
                 <p>@Html.TextBoxFor(x => x.Title)</p>
                 @Html.HiddenFor(x => x.Title)    
             </div>
-            <div class="form-group">
+            <div class="form-group col l12 col s12">
                 @Html.LabelFor(x => x.Description)
                 <p>@Html.TextBoxFor(x => x.Description)</p>   
             </div>
-            <div class="form-group"> 
+            <div class="form-group col l12 col s12"> 
                 @Html.LabelFor(x => x.Type)
                 <p>@Html.TextBoxFor(x => x.Type)</p>
             </div>
-            <div class="form-group">
+            <div class="form-group col l12 col s12">
                 @Html.LabelFor(x => x.Location)
                 <p>@Html.TextBoxFor(x => x.Location)</p>
             </div>

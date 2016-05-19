@@ -2,34 +2,31 @@
 @{
     ViewBag.Title = "Index";
 }
+<p> </p>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<div class="slider"> 
-    <ul class="slides" style="height:900px">
+<div class="slider">
+    <ul class="slides">
+        
         <li>
-            <img src="http://www.ostragymnasiet.se/sidadmin/bildbanken/Image/Foton%20hemsidan/Diverse%20foton/2015_Pia_Nordlander_15117-425_Startsidan_hemsida.jpg"> 
+            <img src="http://www.ostragymnasiet.se/sidadmin/bildbanken/Image/Foton%20hemsidan/Diverse%20foton/2015_Pia_Nordlander_15117-425_Startsidan_hemsida.jpg">
             <div class="caption center-align">
-               
+
             </div>
         </li>
         <li>
-            <img src="http://www.ostragymnasiet.se/sidadmin/bildbanken/Image/Foton%20hemsidan/Diverse%20foton/2015_Pia_Nordlander_15117-152_Om_skolan_hemsida.jpg"> 
+            <img src="http://www.ostragymnasiet.se/sidadmin/bildbanken/Image/Foton%20hemsidan/Diverse%20foton/2015_Pia_Nordlander_15117-152_Om_skolan_hemsida.jpg">
             <div class="caption left-align">
-              
+
             </div>
         </li>
         <li>
-            <img src="https://scontent.xx.fbcdn.net/v/t1.0-9/s851x315/1174861_510793532338611_265810809_n.jpg?oh=1eceedd43cb46f8acbfb38efc9e599f7&oe=57E263E9"> <!-- random image -->
+            <img src="http://www.ostragymnasiet.se/sidadmin/bildbanken/Image/Foton%20hemsidan/Diverse%20foton/2015_Pia_Nordlander_15117-509_Utbildningar_hemsida.jpg"> <!-- random image -->
             <div class="caption right-align">
-              
+
             </div>
         </li>
-        <li>
-            <img src="https://scontent.xx.fbcdn.net/v/t1.0-9/11902547_904108679673759_40624567440134141_n.jpg?oh=7c5c49572886aa2ce50a6afa704d0ecf&oe=57995005"> <!-- random image -->
-            <div class="caption center-align">
-               
-            </div>
-        </li>
+       
     </ul>
 </div>
 
@@ -39,9 +36,8 @@
 
 
 <style type="text/css">
-    
 
-
+  
 
 
 
@@ -49,14 +45,13 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function(){
-        $('.slider').slider({ full_width: true });
-       
-      
-       
-       
-
+    $(document).ready(function () {
+        $('.slider').slider({
+            full_width: false,
+            height: 800,
+            interval: 5000,
+            transition: 800,
+        });
     });
-   
- 
+
 </script>

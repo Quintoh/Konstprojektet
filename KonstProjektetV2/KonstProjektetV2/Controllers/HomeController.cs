@@ -219,8 +219,34 @@ namespace KonstProjektetV2.Controllers
 
         public ActionResult LogIn()
         {
-            return View();
+            var query = new TableQuery<TableAdminModel>();
+            var tableModels = table.ExecuteQuery(query);
+            return View(tableModels);
         }
+
+        [HttpPost]
+        public ActionResult LogIn(string username, string password)
+        {
+            var query = new TableQuery<TableAdminModel>();
+            var tableModels = table.ExecuteQuery(query);
+            var list = tableModels.Select(i => new { i.Username, i.Password }).ToArray();
+            foreach (var item in list)
+            {
+                if ("admin" == username && "1234" == password)
+                {
+                    Session["user"] = new Admin() { Username = username };
+                    return RedirectToAction("Gallery");
+                }
+            }
+            return View(tableModels);
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Index");
+        }
+
         public ActionResult About()
         {
             return View();

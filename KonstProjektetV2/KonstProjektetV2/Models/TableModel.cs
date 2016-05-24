@@ -76,4 +76,32 @@ namespace KonstProjektetV2.Models
 
         public string FileName { get; set; }
     }
+
+    public class TableAdminModel : TableEntity
+    {
+        private string _author;
+        private string _title;
+        public TableAdminModel(string username, string password)
+        {
+            Username = username;
+            Password = password;
+        }
+
+        public TableAdminModel()
+        {
+        }
+        public string Username { get { return _author; } set { this.PartitionKey = value; _author = value; } }
+
+        public string Password { get { return _title; } set { this.RowKey = value; _title = value; } }
+    }
+
+    public class Admin
+    {
+        public Admin()
+        {
+        }
+        public string Username { get; set; }
+
+        public string Password { get; set; }
+    }
 }

@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<KonstProjektetV2.Models.TableModel>
+@using KonstProjektetV2.Models
 
 @{
     ViewBag.Title = "Gallery";
@@ -29,15 +30,19 @@
     </div>
 
     searchText = ViewBag.SearchWord;
-
+    
+        var user = Session["user"] as Admin;
+    
+        if (user != null)
+        {
     <div class="col-lg-6 center" style="text-align:center;">
         <a href="@Url.Action("AddNew", "Home", new { })" class="btn waves-effect waves-light">
             Lägg till konstverk
         </a>
     </div>
-
-    if (searchText != null && searchText != "")
-    {
+        }
+        if (searchText != null && searchText != "")
+        {
         <hr />
         <div class="container center" style="text-align: center;">
             <h4 class="center">
@@ -67,9 +72,18 @@
                 </div>
 
                 <div class="col l3 col s12">
-                    <a href="@Url.Action("Edit", "Home", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })" class="btn waves-effect waves-light" style="float: right;">Redigera</a>
-                    <br />
-                    <a href="@Url.Action("Delete", "Home", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })" class="btn waves-effect waves-light" style="float: right;">Ta bort</a>
+                    
+
+                    @{
+                        var user = Session["user"] as Admin;
+                    }
+                    @if (user != null)
+                    {
+                        <a href="@Url.Action("Edit", "Home", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })" class="btn waves-effect waves-light" style="float: right;">Redigera</a>
+                        <br />
+                        <a href="@Url.Action("Delete", "Home", new { partitionKey = tableModel.PartitionKey, rowKey = tableModel.RowKey })" class="btn waves-effect waves-light" style="float: right;">Ta bort</a>
+                    }
+                    
                 </div>
             </div>
         </div>
